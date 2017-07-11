@@ -1,3 +1,4 @@
+import random
 import itchat
 from itchat.content import TEXT, MAP, NOTE, CARD, SHARING
 from itchat.content import PICTURE, RECORDING, ATTACHMENT
@@ -32,6 +33,16 @@ def text_reply(msg):
         else:
             msg.user.send(u'@%s,%s' % (
                 msg.actualNickName, msg.text))
+    else:
+        randid = random.randint(0, 10) % 4
+        if(randid == 1):
+            msg.user.send('Nice to meet u!')
+        elif(randid == 2):
+            msg.user.send('U are welcome!')
+        elif(randid == 3):
+            msg.user.send('Come on,baby!')
+        else:
+            pass
 
 
 itchat.auto_login(True)
