@@ -1,5 +1,22 @@
+# _*_ coding:utf-
+
+import sys
+sys.path.append('/usr/local/lib/python2.7/site-packages')
+
 import random
 import itchat
+
+match_dict = {
+        'Hi':'Hi',
+        'Hello':'Hello',
+        'new year':'HAPPY NEW YEAR!',
+        'xin nian hao':'XIN NIAN HAO!',
+        'good morning':'good morning',
+        '88':'Have a Good dream!'
+    }
+
+question = ' '
+
 from itchat.content import TEXT, MAP, NOTE, CARD, SHARING
 from itchat.content import PICTURE, RECORDING, ATTACHMENT
 from itchat.content import VIDEO, FRIENDS
@@ -7,7 +24,7 @@ from itchat.content import VIDEO, FRIENDS
 
 @itchat.msg_register([TEXT, MAP, CARD, NOTE, SHARING])
 def text_reply(msg):
-    msg.user.send('%s:%s' % (msg.type, msg.text))
+    msg.user.send('%s' %(msg.text))
 
 
 @itchat.msg_register([PICTURE, RECORDING, ATTACHMENT, VIDEO])
@@ -27,23 +44,39 @@ def add_friend(msg):
 
 @itchat.msg_register(TEXT, isGroupChat=True)
 def text_reply(msg):
+    global question
     if msg.isAt:
-        if ('hi' in msg.text):
-            msg.user.send('hehe')
+        if msg.text[8:12]=='ans:':
+            match_dict[question]=msg.text[12:]
+            msg.user.send('I have learned it')
+            pass    
+
+        elif msg.text[8:] in match_dict:
+            reply = match_dict[msg.text[8:]]
+            msg.user.send('@%s,%s' % (msg.actualNickName, reply))
         else:
-            msg.user.send(u'@%s,%s' % (
-                msg.actualNickName, msg.text))
+            msg.user.send("I do not know this question, please tell me the answer.")
+            question=msg.text[8:]
     else:
-        randid = random.randint(0, 10) % 4
-        if(randid == 1):
-            msg.user.send('Nice to meet u!')
+        randid = random.randint(0, 100) % 100
+        reply = "great"
+        if(randid == 0):
+            reply = 'Happy new year!'
+        elif(randid == 1):
+            reply = "hello !"
         elif(randid == 2):
-            msg.user.send('U are welcome!')
+            reply = "ok"
         elif(randid == 3):
-            msg.user.send('Come on,baby!')
+            reply = "nice to meet you "
         else:
             pass
 
+        msg.user.send(reply)
 
-itchat.auto_login(True)
+
+
+
+itchat.auto_login(hotReload=True)
 itchat.run(True)
+#init_rand_dict()
+
