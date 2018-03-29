@@ -1,4 +1,4 @@
-# _*_ coding:utf-
+# _*_ codeing:utf-
 
 import sys
 sys.path.append('/usr/local/lib/python2.7/site-packages')
@@ -76,7 +76,7 @@ def text_reply(msg):
 
 
 
-itchat.auto_login(hotReload=True)
+itchat.auto_login()
 itchat.run(True)
 #init_rand_dict()
 
