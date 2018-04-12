@@ -29,16 +29,15 @@ setup(
     license='MIT',
 
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 0.1',
 
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Libraries :: Python Modules',
 
         'License :: OSI Approved :: MIT License',
 
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.0',
     ],
 
     keywords=' A wechat robot ',
@@ -47,7 +46,7 @@ setup(
     # simple. Or you can use find_packages().
     packages=find_packages(),
 
-    install_requires=['requests', 'pyqrcode', 'pypng'],
+    install_requires=['requests', 'pyqrcode', 'pypng','itchat'],
 
     # List additional groups of dependencies here
     extras_require={},
