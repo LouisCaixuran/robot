@@ -1,7 +1,6 @@
 
-Introduce
+## Install
+$ python setup.py install
 
-aaa
-
-
-How to install
+## Use
+$ python 
